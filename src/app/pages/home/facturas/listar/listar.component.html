@@ -23,6 +23,9 @@
     <input type="text" class="form-control" [(ngModel)]="searchTerm" (input)="searchFacturas()"
         placeholder="Buscar factura..." aria-label="Buscar factura">
     <span class="input-group-text"><i class="bi bi-search"></i></span>
+    <div class="enlaces">
+        <a href="/" onclick="return false;" (click)="limpiarBusqueda()">Limpiar</a>
+    </div>
 </div>
 
 <div class="container-fluid mt-5">

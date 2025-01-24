@@ -59,6 +59,11 @@ export class ListarComponent {
     this.listFacturas(newPage);
   }
 
+  limpiarBusqueda() {
+    this.searchTerm = '';
+    this.listFacturas();
+  }
+
   logout() {
     this.authService.logout();
   }
