@@ -30,7 +30,7 @@ export class LoginComponent {
 
     this.isLoading$ = this.authService.isLoading$;
 
-    if (this.authService.token && this.authService.user) {
+    if (this.authService.token) {
       window.location.href = "/";
       return;
     }
@@ -64,9 +64,9 @@ export class LoginComponent {
       if (resp == true) {
         this.toastr.success("Éxito", 'Bienvenido');
         setTimeout(() => {
-          this.router.navigate(['/']);
-        }, 500);
-        
+          window.location.href = "/";
+        }, 1500);
+
       }
     }, (error) => {
       console.log(error);

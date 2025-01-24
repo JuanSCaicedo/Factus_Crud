@@ -12,7 +12,7 @@ export class PermisionAuth {
 
     canActivate(): boolean {
 
-        if (!this.authService.user || !this.authService.token) {
+        if (!this.authService.token) {
             this.router.navigateByUrl("/login");
             return false;
         }

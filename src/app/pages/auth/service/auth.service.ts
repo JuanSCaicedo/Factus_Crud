@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { URL_SERVICIOS } from '../../../config/config';
+import { CLIENT_ID, CLIENT_SECRET, URL_API, URL_SERVICIOS } from '../../../config/config';
 import { catchError, BehaviorSubject, Observable, finalize, map, of } from 'rxjs';
 
 @Injectable({
@@ -32,30 +32,40 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-
     this.isLoadingSubject.next(true);
 
-    let URL = URL_SERVICIOS + "/auth/login_ecommerce";
+    const URL = URL_API + "/oauth/token";
 
-    return this.http.post(URL, { email, password }).pipe(
+    // Crear el cuerpo de la solicitud en formato x-www-form-urlencoded
+    const body = new URLSearchParams();
+    body.set('grant_type', 'password');
+    body.set('client_id', CLIENT_ID); // Reemplaza por tu client_id
+    body.set('client_secret', CLIENT_SECRET); // Reemplaza por tu client_secret
+    body.set('username', email); // El servidor espera "username", no "email"
+    body.set('password', password);
+
+    // Enviar la solicitud HTTP
+    return this.http.post(URL, body.toString(), {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    }).pipe(
       map((resp: any) => {
         console.log(resp);
-        const result = this.saveLocalStorage(resp);
+        const result = this.saveLocalStorage(resp); // Guardar la respuesta en el almacenamiento local
         return result;
       }),
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return of(err);
       }),
-
       finalize(() => this.isLoadingSubject.next(false))
-    )
+    );
   }
 
   saveLocalStorage(resp: any) {
     if (resp && resp.access_token) {
       localStorage.setItem("token", resp.access_token);
-      localStorage.setItem("user", JSON.stringify(resp.user));
       return true;
     }
     return false;
@@ -63,7 +73,6 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem("token");
-    localStorage.removeItem("user");
     this.user = null;
     this.token = '';
 
