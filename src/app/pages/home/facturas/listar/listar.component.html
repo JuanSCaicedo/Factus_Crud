@@ -1,0 +1,78 @@
+<div class="infor">
+    <h2>Listado de facturas</h2>
+
+    <div class="enlaces">
+        <a [routerLink]="'/'">
+            Volver
+        </a>
+        <a href="/" onclick="return false;" (click)="logout()">
+            Logout
+        </a>
+    </div>
+</div>
+
+<div class="input-group mb-3">
+    <input type="text" class="form-control" [(ngModel)]="searchTerm" (input)="searchFacturas()"
+        placeholder="Buscar factura..." aria-label="Buscar factura">
+    <span class="input-group-text"><i class="bi bi-search"></i></span>
+</div>
+
+<div class="container-fluid mt-5">
+    <!-- Tabla de Facturas -->
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover w-100">
+            <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let factura of facturas">
+                    <td>{{ factura.id }}</td>
+                    <td>{{ factura.names }}</td>
+                    <td>{{ factura.email }}</td>
+                    <td>{{ factura.total }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Controles de Paginación -->
+    <div class=" align-items-center mt-3">
+        <div class="pagination-controls d-flex justify-content-between w-100">
+            <!-- Botón para la primera página -->
+            <button class="btn btn-outline-primary" (click)="changePage(1)" [disabled]="currentPage === 1"
+                aria-label="Ir a la primera página">Primera</button>
+
+            <!-- Botón para la página anterior -->
+            <button class="btn btn-outline-primary" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1"
+                aria-label="Página anterior">Anterior</button>
+
+            <!-- Mostrar rango de páginas -->
+            <span class="mx-3">Mostrando {{ (currentPage - 1) * perPage + 1 }} -
+                {{ currentPage * perPage < totalRecords ? currentPage * perPage : totalRecords }} de {{ totalRecords }}
+                    registros </span>
+
+                    <!-- Botón para la página siguiente -->
+                    <button class="btn btn-outline-primary" (click)="changePage(currentPage + 1)"
+                        [disabled]="currentPage * perPage >= totalRecords"
+                        aria-label="Página siguiente">Siguiente</button>
+
+                    <!-- Botón para la última página -->
+                    <button class="btn btn-outline-primary" (click)="changePage(totalPages)"
+                        [disabled]="currentPage === totalPages" aria-label="Ir a la última página">Última</button>
+
+                    <!-- Controles de salto rápido -->
+                    <div class="pagination-jump d-flex justify-content-between">
+                        <button class="btn btn-outline-secondary" (click)="changePage(currentPage - 10)"
+                            [disabled]="currentPage <= 10" aria-label="Saltarse 10 páginas atrás">-10</button>
+                        <button class="btn btn-outline-secondary" (click)="changePage(currentPage + 10)"
+                            [disabled]="currentPage * perPage >= totalRecords"
+                            aria-label="Saltarse 10 páginas adelante">+10</button>
+                    </div>
+        </div>
+    </div>
+</div>

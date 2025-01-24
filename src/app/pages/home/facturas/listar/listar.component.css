@@ -1,0 +1,162 @@
+/* Aseguramos que la tabla tome más espacio (el 90%) y se adapte mejor */
+.container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.table {
+    width: 100%;
+    /* La tabla toma el 100% del ancho disponible */
+    margin-bottom: 30px;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+
+.table th,
+.table td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px;
+    /* Espaciado para mejorar la legibilidad */
+}
+
+.table-striped tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.table-bordered {
+    border: 1px solid #dee2e6;
+}
+
+/* Paginación: mantenemos el diseño original de fila horizontal */
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.pagination-controls button {
+    margin: 0 5px;
+}
+
+/* Controles de salto rápido, manteniéndolos alineados a la derecha */
+.pagination-jump {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.pagination-jump button {
+    margin-left: 10px;
+}
+
+/* Mejora el diseño en pantallas más pequeñas */
+@media (max-width: 768px) {
+    .pagination-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .pagination-controls {
+        margin-bottom: 10px;
+    }
+
+    .pagination-controls button,
+    .pagination-jump button {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .table {
+        font-size: 14px;
+        /* Tamaño de fuente más pequeño para pantallas pequeñas */
+    }
+}
+
+/* Estilo de los botones de paginación */
+.btn-outline-primary {
+    font-weight: 500;
+    font-size: 14px;
+    padding: 8px 16px;
+}
+
+.btn-outline-secondary {
+    font-weight: 500;
+    font-size: 14px;
+    padding: 8px 16px;
+}
+
+.infor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    background-color: blue;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+thead {
+    background-color: #007bff;
+}
+
+.enlaces {
+    display: flex;
+    gap: 10px;
+}
+
+/* Personalización del campo de búsqueda */
+.input-group {
+    margin: 10px;
+    padding-left: 10px;
+    /* Centrar el campo */
+}
+
+.form-control {
+    padding: 10px;
+    /* Espaciado dentro del campo */
+    font-size: 1rem;
+    /* Ajuste de tamaño de fuente */
+    border-radius: 25px;
+    /* Bordes redondeados */
+    border: 1px solid #ccc;
+    /* Borde gris */
+    transition: all 0.3s ease;
+    /* Transición para un efecto suave */
+    width: 40%;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    /* Cambio de color del borde cuando está enfocado */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    /* Sombra azul */
+}
+
+.input-group-text {
+    background-color: #007bff;
+    /* Fondo azul para el ícono */
+    border: none;
+    /* Quitar borde */
+    color: white;
+    /* Ícono de color blanco */
+    border-radius: 0 25px 25px 0;
+    /* Bordes redondeados a la derecha */
+}
+
+/* Asegúrate de que el ícono esté centrado */
+.input-group-text i {
+    font-size: 1.2rem;
+}

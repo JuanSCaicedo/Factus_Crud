@@ -1,5 +1,12 @@
-<p>home works!</p>
-
 <a href="#" onclick="return false;" (click)="logout()" class="tp-login-btn w-100">
     Logout
 </a>
+
+<h1>Bienvenido al CRUD de Factus</h1>
+
+<!-- Crea un listado con 3 enlaces -->
+<ul>
+    <li><a [routerLink]="['/ver-facturas']">Ver Facturas</a></li>
+    <li><a [routerLink]="['/crear-factura']">Crear Factura</a></li>
+    <li><a [routerLink]="['/']">Home</a></li>
+</ul>
