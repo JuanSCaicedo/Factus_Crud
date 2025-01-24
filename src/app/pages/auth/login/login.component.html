@@ -1,0 +1,35 @@
+<div class="tp-login-input-wrapper">
+    <div>
+        <img src="https://api-sandbox.factus.com.co/storage/images/logos/lC5CLGXHgwlv8slaoiKC6dHkVLIXQVaDkL9C1Yqc.png"
+            alt="factus">
+    </div>
+    <div class="tp-login-input-box">
+        <div class="tp-login-input">
+            <input id="email" [(ngModel)]="email" type="email" placeholder="shofy@mail.com">
+        </div>
+        <div class="tp-login-input-title">
+            <label for="email">Your Email</label>
+        </div>
+    </div>
+    <div class="tp-login-input-box">
+        <div class="tp-login-input">
+            <input id="tp_password" [(ngModel)]="password" type="password" placeholder="Min. 8 character">
+        </div>
+        <div class="tp-login-input-title">
+            <label for="tp_password">Password</label>
+        </div>
+
+        <a href="#" onclick="return false;" (click)="login()" class="tp-login-btn"
+            [class.disabled-btn]="isLoading$ | async">
+            <ng-container *ngIf="isLoading$ | async">
+                <span class="indicator-progress" [style.display]="'block'">
+                    Please wait...
+                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                </span>
+            </ng-container>
+            <ng-container *ngIf="(isLoading$ | async) === false">
+                <span class="indicator-label">Login</span>
+            </ng-container>
+        </a>
+    </div>
+</div>
