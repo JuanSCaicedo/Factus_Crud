@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../auth/service/auth.service';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-listar',
@@ -19,9 +20,11 @@ export class ListarComponent {
   totalRecords = 0; // Total de registros
   totalPages: number = 0; // Total de páginas
   searchTerm: string = '';  // Esta variable guardará el texto de búsqueda
+  selectedFilter: string = 'names';
 
   constructor(private facturasService: FacturasService,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -29,16 +32,25 @@ export class ListarComponent {
   }
 
   searchFacturas() {
-    // Llamar al servicio con el término de búsqueda
-    this.listFacturas(1, { names: this.searchTerm });
+    const filters = {
+      [this.selectedFilter]: this.searchTerm
+    };
+    this.listFacturas(1, filters);
+  }
+
+  onFilterChange() {
+    // Reiniciar el campo de búsqueda cuando cambie el filtro
+    this.searchFacturas();
   }
 
   listFacturas(page = 1, filters: any = {}) {
     this.facturasService.listarFacturas(page, this.perPage, filters).subscribe((data: any) => {
       this.facturas = data.data.data;
-      this.totalRecords = data.data.pagination.total; // Total de registros
+      this.totalRecords = data.data.pagination.total;
       this.totalPages = Math.ceil(this.totalRecords / this.perPage);
-      console.log(this.totalRecords);
+    }, (error: any) => {
+      console.log(error);
+      this.toastr.error('API Response - Comuniquese con el desarrollador', error.error.message || error.message);
     });
   }
 

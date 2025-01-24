@@ -11,7 +11,15 @@
     </div>
 </div>
 
-<div class="input-group mb-3">
+<p class="texto-selecc">Seleccione el tipo de filtro</p>
+<div class="input-group">
+    <select class="form-control option" [(ngModel)]="selectedFilter" (change)="onFilterChange()">
+        <option value="names">Nombre</option>
+        <option value="identification">Identificación</option>
+        <option value="number">Número</option>
+        <option value="prefix">Prefijo</option>
+        <option value="reference_code">Código de referencia</option>
+    </select>
     <input type="text" class="form-control" [(ngModel)]="searchTerm" (input)="searchFacturas()"
         placeholder="Buscar factura..." aria-label="Buscar factura">
     <span class="input-group-text"><i class="bi bi-search"></i></span>
@@ -25,23 +33,50 @@
                 <tr>
                     <th>#</th>
                     <th>Nombre</th>
+                    <th>Identificación</th>
                     <th>Email</th>
+                    <th>N° Factura</th>
+                    <th>Codigo de referencia</th>
+                    <th>Estado</th>
                     <th>Total</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let factura of facturas">
                     <td>{{ factura.id }}</td>
                     <td>{{ factura.names }}</td>
+                    <td>{{ factura.identification }}</td>
                     <td>{{ factura.email }}</td>
+                    <td>{{ factura.number }}</td>
+                    <td>{{ factura.reference_code }}</td>
+                    <td>
+                        @if(factura.status == 1) {
+                        <span>Validada</span>
+                        }
+
+                        @if(factura.status == 2) {
+                        <span>Pendiente</span>
+                        }
+                    </td>
                     <td>{{ factura.total }}</td>
+                    <td class="acciones">
+
+                        <a href="#" onclick="return false;" title="Edit">
+                            Edit
+                        </a>
+
+                        <a class="delete" href="#" onclick="return false;" title="Delete">
+                            Delete
+                        </a>
+                    </td>
                 </tr>
             </tbody>
         </table>
     </div>
 
     <!-- Controles de Paginación -->
-    <div class=" align-items-center mt-3">
+    <div class=" align-items-center mt-3 table-responsive">
         <div class="pagination-controls d-flex justify-content-between w-100">
             <!-- Botón para la primera página -->
             <button class="btn btn-outline-primary" (click)="changePage(1)" [disabled]="currentPage === 1"

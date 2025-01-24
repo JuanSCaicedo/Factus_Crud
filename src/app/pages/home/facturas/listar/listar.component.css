@@ -80,6 +80,10 @@
     }
 }
 
+.texto-selecc{
+    margin-left: 20px;
+}
+
 /* Estilo de los botones de paginación */
 .btn-outline-primary {
     font-weight: 500;
@@ -117,8 +121,14 @@ thead {
     gap: 10px;
 }
 
+.option {
+    width: 15% !important;
+}
+
 /* Personalización del campo de búsqueda */
 .input-group {
+    display: flex;
+    gap: 10px;
     margin: 10px;
     padding-left: 10px;
     /* Centrar el campo */
@@ -159,4 +169,19 @@ thead {
 /* Asegúrate de que el ícono esté centrado */
 .input-group-text i {
     font-size: 1.2rem;
+}
+
+.table-responsive {
+    overflow-x: auto;
+    /* Agregar desplazamiento horizontal */
+}
+
+.acciones {
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+}
+
+.delete {
+    background-color: red;
 }

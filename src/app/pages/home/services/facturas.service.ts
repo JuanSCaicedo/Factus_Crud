@@ -25,7 +25,6 @@ export class FacturasService {
 
     let queryParams = `?page=${page}&per_page=${perPage}`;
 
-    // Agregar los filtros a la URL si están presentes
     for (const [key, value] of Object.entries(filters)) {
       if (value) {
         queryParams += `&filter[${key}]=${value}`;

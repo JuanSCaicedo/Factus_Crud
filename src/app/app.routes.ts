@@ -18,14 +18,17 @@ export const routes: Routes = [
     },
     {
         path: 'ver-facturas',
+        canActivate: [authGuard],
         component: ListarComponent
     },
     {
         path: 'crear-factura',
+        canActivate: [authGuard],
         component: CrearComponent
     },
     {
         path: 'editar-factura/:id',
+        canActivate: [authGuard],
         component: EditarComponent
     }
 ];
