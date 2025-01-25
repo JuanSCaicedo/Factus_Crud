@@ -203,7 +203,7 @@ export class CrearComponent {
   ) { }
 
   ngOnInit() {
-    this.isLoading$ = this.authService.isLoading$;
+    this.isLoading$ = this.facturasService.isLoading$;
   }
 
   getSelectedProducts() {
