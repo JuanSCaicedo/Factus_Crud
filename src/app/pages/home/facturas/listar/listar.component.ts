@@ -5,6 +5,7 @@ import { AuthService } from '../../../auth/service/auth.service';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-listar',
@@ -66,5 +67,46 @@ export class ListarComponent {
 
   logout() {
     this.authService.logout();
+  }
+
+  descargarFactura(number: string) {
+    this.facturasService.descargarFactura(number).subscribe(
+      (response: any) => {
+        if (response.status === 'OK' && response.data.pdf_base_64_encoded) {
+          // Decodificar base64
+          const base64Data = response.data.pdf_base_64_encoded;
+          const fileName = response.data.file_name;
+
+          // Decodificar el string base64
+          const byteCharacters = atob(base64Data);
+          const byteArrays = [];
+
+          for (let i = 0; i < byteCharacters.length; i++) {
+            byteArrays.push(byteCharacters.charCodeAt(i));
+          }
+
+          // Crear el blob con los datos del PDF
+          const blob = new Blob([new Uint8Array(byteArrays)], { type: 'application/pdf' });
+
+          // Crear un enlace de descarga
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(blob);
+          link.download = fileName;
+          link.click();
+
+          Swal.fire({
+            title: "Descarga exitosa",
+            icon: "success",
+            draggable: true
+          });
+        } else {
+          this.toastr.error('Error al descargar el archivo PDF', 'Error');
+        }
+      },
+      (error: any) => {
+        console.error(error);
+        this.toastr.error('Ocurrió un error al descargar la factura', 'Error');
+      }
+    );
   }
 }

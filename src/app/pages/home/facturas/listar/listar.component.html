@@ -65,7 +65,8 @@
                     <td>{{ factura.total }}</td>
                     <td class="acciones">
 
-                        <a class="download" href="#" onclick="return false;" title="Download" style="width: 20px;">
+                        <a (click)="descargarFactura(factura.number)" class="download" href="/" onclick="return false;"
+                            title="Download" style="width: 20px;">
                             &darr;
                         </a>
 

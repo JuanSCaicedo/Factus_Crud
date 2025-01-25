@@ -55,11 +55,11 @@ export class FacturasService {
   // }
 
   // // Descargar Factura
-  // descargarFactura(id: string) {
-  //   const headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
-  //   return this.http.get(`${this.apiUrl}/facturas/${id}/descargar`, {
-  //     headers,
-  //     responseType: 'blob' // Descargar como archivo
-  //   });
-  // }
+  descargarFactura(number: any) {
+    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authservice.token });
+    let url = URL_API + '/v1/bills/download-pdf/' + number;
+    return this.http.get(url, {
+      headers: headers,
+    });
+  }
 }
