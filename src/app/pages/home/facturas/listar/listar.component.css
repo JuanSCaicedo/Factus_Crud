@@ -185,3 +185,7 @@ thead {
 .delete {
     background-color: red;
 }
+
+.download{
+    background-color: green;
+}

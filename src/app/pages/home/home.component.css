@@ -1,0 +1,42 @@
+.infor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+
+    a {
+        background-color: green;
+        padding: 10px;
+        border-radius: 10px;
+        color: white;
+        text-decoration: none;
+        font-size: 20px;
+    }
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+    margin-top: 150px;
+}
+
+ul li a {
+    text-decoration: none;
+    background-color: antiquewhite;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 20px 30px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* hacer la letra mas grande */
+    font-size: 40px;
+}
+
+ul li a:hover {
+    background-color: #333;
+    color: #fff;
+}
