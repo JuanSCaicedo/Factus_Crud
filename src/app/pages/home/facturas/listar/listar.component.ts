@@ -109,4 +109,42 @@ export class ListarComponent {
       }
     );
   }
+
+  verFacturaDian(number: string) {
+    this.facturasService.verFacturaDian(number).subscribe(
+      (response: any) => {
+        console.log(response);
+
+        Swal.fire({
+          title: 'Información de la factura ' + response.data.bill.number,
+          html: `
+          <p><strong>Fecha de emisión:</strong> ${response.data.bill.created_at}</p>
+          <p><strong>Cliente:</strong> ${response.data.customer.names}</p>
+          <p><strong>Referencia:</strong> ${response.data.bill.reference_code}</p>
+            <p><strong>Valor total:</strong> $${response.data.bill.total}</p>
+          `,
+          icon: "info",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Ver factura en la DIAN",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            //abriri una nueva ventana con la url de la DIAN response.data.bill.qr
+            window.open(response.data.bill.qr, "_blank");
+            Swal.fire({
+              title: "Realizado!",
+              text: "La factura se ha abierto en una nueva ventana",
+              icon: "success"
+
+            });
+          }
+        });
+      },
+      (error: any) => {
+        console.error(error);
+        this.toastr.error('Ocurrió un error al obtener la información de la factura', 'Error');
+      }
+    );
+  }
 }

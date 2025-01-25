@@ -2,24 +2,24 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from '../../auth/service/auth.service';
 import { URL_API } from '../../../config/config';
+import { catchError, BehaviorSubject, Observable, finalize, map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FacturasService {
-  private apiUrl = URL_API;
-  private token = ''; // Inicialmente vacío, se obtiene al iniciar sesión.
+
+  isLoading$: Observable<boolean>;
+  isLoadingSubject: BehaviorSubject<boolean>;
 
   constructor(private http: HttpClient,
     private authservice: AuthService
-  ) { }
+  ) {
+    this.isLoadingSubject = new BehaviorSubject<boolean>(false);
+    this.isLoading$ = this.isLoadingSubject.asObservable();
+  }
 
   // Listar Facturas
-  // listarFacturas() {
-  //   const headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
-  //   return this.http.get(`${this.apiUrl}/v1/bills`, { headers });
-  // }
-
   listarFacturas(page: number, perPage: number, filters: any = {}) {
     const headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authservice.token });
 
@@ -36,28 +36,27 @@ export class FacturasService {
   }
 
   // Crear Factura
-  createBrands(data: any) {
+  createFactura(data: any) {
+    this.isLoadingSubject.next(true);
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authservice.token });
     let url = URL_API + '/v1/bills/validate';
-    return this.http.post(url, data, { headers: headers });
+    return this.http.post(url, data, { headers: headers }).pipe(
+      finalize(() => this.isLoadingSubject.next(false))
+    );
   }
-
-  // // Editar Factura
-  // editarFactura(id: string, factura: any) {
-  //   const headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
-  //   return this.http.put(`${this.apiUrl}/facturas/${id}`, factura, { headers });
-  // }
-
-  // // Eliminar Factura
-  // eliminarFactura(id: string) {
-  //   const headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
-  //   return this.http.delete(`${this.apiUrl}/facturas/${id}`, { headers });
-  // }
 
   // // Descargar Factura
   descargarFactura(number: any) {
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authservice.token });
     let url = URL_API + '/v1/bills/download-pdf/' + number;
+    return this.http.get(url, {
+      headers: headers,
+    });
+  }
+
+  verFacturaDian(number: any) {
+    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authservice.token });
+    let url = URL_API + '/v1/bills/show/' + number;
     return this.http.get(url, {
       headers: headers,
     });

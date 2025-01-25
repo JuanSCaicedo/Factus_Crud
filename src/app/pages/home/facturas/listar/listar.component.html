@@ -58,7 +58,7 @@
                         <span>Validada</span>
                         }
 
-                        @if(factura.status == 2) {
+                        @if(factura.status == 0) {
                         <span>Pendiente</span>
                         }
                     </td>
@@ -70,12 +70,8 @@
                             &darr;
                         </a>
 
-                        <a href="#" onclick="return false;" title="Edit">
-                            Edit
-                        </a>
-
-                        <a class="delete" href="#" onclick="return false;" title="Delete">
-                            Delete
+                        <a href="/" onclick="return false;" (click)="verFacturaDian(factura.number)" title="Ver Dian">
+                            INFO
                         </a>
                     </td>
                 </tr>

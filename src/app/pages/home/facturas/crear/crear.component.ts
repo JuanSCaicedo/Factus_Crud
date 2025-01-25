@@ -16,6 +16,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CrearComponent {
 
+  isLoading$: any;
+
   // Arreglo de productos ficticios con nombres reales
   productos = [
     {
@@ -188,17 +190,21 @@ export class CrearComponent {
   observation: any;
   customer_identification: any;
   customer_company: any;
-  customer_type: any;
+  customer_type: any = 0;
   customer_names: any;
   customer_address: any;
   customer_email: any;
   customer_phone: any;
-  payment_method: any;
+  payment_method: any = 0;
 
   constructor(private authService: AuthService,
     private facturasService: FacturasService,
     private toastr: ToastrService,
   ) { }
+
+  ngOnInit() {
+    this.isLoading$ = this.authService.isLoading$;
+  }
 
   getSelectedProducts() {
     return this.productos.filter(product => product.selected);
@@ -239,9 +245,7 @@ export class CrearComponent {
       ]
     };
 
-    console.log('Datos a enviar:', data);
-
-    this.facturasService.createBrands(data).subscribe((resp: any) => {
+    this.facturasService.createFactura(data).subscribe((resp: any) => {
       console.log(resp);
 
       this.reference_code = "";

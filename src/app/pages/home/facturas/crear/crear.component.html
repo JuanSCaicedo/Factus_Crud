@@ -13,7 +13,7 @@
 
 <div class="form-container">
     <h2>Crear Factura</h2>
-    <form (ngSubmit)="onSubmit()">
+    <form>
         <div class="form-row">
             <div class="form-group">
                 <label for="reference_code">Código de Referencia:</label>
@@ -124,6 +124,19 @@
                 <input type="tel" id="customer_phone" name="customer.phone" [(ngModel)]="customer_phone" required>
             </div>
         </div>
-        <button type="submit" class="btn">Enviar</button>
+        <!-- <button type="submit" class="btn">Enviar</button> -->
+
+        <a href="#" onclick="return false;" (click)="onSubmit()" class="tp-login-btn"
+            [class.disabled-btn]="isLoading$ | async">
+            <ng-container *ngIf="isLoading$ | async">
+                <span class="indicator-progress" [style.display]="'block'">
+                    Please wait...
+                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                </span>
+            </ng-container>
+            <ng-container *ngIf="(isLoading$ | async) === false">
+                <span class="indicator-label">Enviar</span>
+            </ng-container>
+        </a>
     </form>
 </div>

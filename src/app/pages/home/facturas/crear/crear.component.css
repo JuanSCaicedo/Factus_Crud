@@ -35,6 +35,7 @@ a {
 .form-row {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
 }
 
@@ -153,14 +154,17 @@ a {
 /* Contenedor de los productos */
 .productos {
     display: grid;
-    grid-template-columns: 1fr; /* Una columna por defecto */
-    gap: 16px; /* Espaciado entre las filas */
+    grid-template-columns: 1fr;
+    /* Una columna por defecto */
+    gap: 16px;
+    /* Espaciado entre las filas */
 }
 
 /* A partir de pantallas grandes */
 @media (min-width: 768px) {
     .productos {
-        grid-template-columns: 1fr 1fr; /* Dos columnas */
+        grid-template-columns: 1fr 1fr;
+        /* Dos columnas */
     }
 }
 
@@ -169,4 +173,30 @@ a {
     display: flex;
     align-items: center;
     gap: 8px;
+}
+
+.tp-login-btn {
+    margin-top: 20px;
+    display: inline-block;
+    width: 100%;
+    padding: 12px;
+    /* quitar la linea del enlace */
+    text-decoration: none;
+    text-align: center;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.tp-login-btn:hover {
+    background-color: #0056b3;
+}
+
+.tp-login-btn.disabled-btn {
+    background-color: #cccccc;
+    cursor: not-allowed;
 }
