@@ -127,12 +127,17 @@ thead {
     }
 }
 
+.mx-3{
+    margin: 0 1rem;
+}
+
 /* Personalización del campo de búsqueda */
 .input-group {
     display: flex;
     gap: 10px;
     margin: 10px;
     padding-left: 10px;
+    margin-bottom: 15px;
     /* Centrar el campo */
 }
 
