@@ -80,7 +80,7 @@
     }
 }
 
-.texto-selecc{
+.texto-selecc {
     margin-left: 20px;
 }
 
@@ -121,8 +121,10 @@ thead {
     gap: 10px;
 }
 
-.option {
-    width: 15% !important;
+@media screen and (min-width: 768px) {
+    .option {
+        width: 15% !important;
+    }
 }
 
 /* Personalización del campo de búsqueda */
@@ -186,6 +188,6 @@ thead {
     background-color: red;
 }
 
-.download{
+.download {
     background-color: green;
 }
