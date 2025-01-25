@@ -36,10 +36,11 @@ export class FacturasService {
   }
 
   // Crear Factura
-  // crearFactura(factura: any) {
-  //   const headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
-  //   return this.http.post(`${this.apiUrl}/facturas`, factura, { headers });
-  // }
+  createBrands(data: any) {
+    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authservice.token });
+    let url = URL_API + '/v1/bills/validate';
+    return this.http.post(url, data, { headers: headers });
+  }
 
   // // Editar Factura
   // editarFactura(id: string, factura: any) {

@@ -1,0 +1,172 @@
+.infor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    background-color: blue;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.enlaces {
+    display: flex;
+    gap: 10px;
+}
+
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    width: 48%;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.form-group textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+@media (max-width: 767px) {
+    .form-container {
+        padding: 20px;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .form-group {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
+    .customer .container {
+        margin-bottom: 20px;
+    }
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin: 10px;
+    padding-left: 10px;
+    margin-bottom: 15px;
+    /* Centrar el campo */
+}
+
+.customer {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.form-control {
+    padding: 10px;
+    /* Espaciado dentro del campo */
+    font-size: 1rem;
+    /* Ajuste de tamaño de fuente */
+    border-radius: 25px;
+    /* Bordes redondeados */
+    border: 1px solid #ccc;
+    /* Borde gris */
+    transition: all 0.3s ease;
+    /* Transición para un efecto suave */
+    width: 100%;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    /* Cambio de color del borde cuando está enfocado */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    /* Sombra azul */
+}
+
+.input-group-text {
+    background-color: #007bff;
+    /* Fondo azul para el ícono */
+    border: none;
+    /* Quitar borde */
+    color: white;
+    /* Ícono de color blanco */
+    border-radius: 0 25px 25px 0;
+    /* Bordes redondeados a la derecha */
+}
+
+/* Asegúrate de que el ícono esté centrado */
+.input-group-text i {
+    font-size: 1.2rem;
+}
+
+
+/* Contenedor de los productos */
+.productos {
+    display: grid;
+    grid-template-columns: 1fr; /* Una columna por defecto */
+    gap: 16px; /* Espaciado entre las filas */
+}
+
+/* A partir de pantallas grandes */
+@media (min-width: 768px) {
+    .productos {
+        grid-template-columns: 1fr 1fr; /* Dos columnas */
+    }
+}
+
+/* Opcional: Ajuste del formulario */
+.form-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
