@@ -211,7 +211,7 @@ export class CrearComponent {
   }
 
   onSubmit() {
-    if (!this.reference_code || !this.observation || !this.customer_identification || !this.customer_company || !this.customer_type || !this.customer_names || !this.customer_address || !this.customer_email || !this.customer_phone || !this.payment_method) {
+    if (!this.reference_code || !this.observation || !this.customer_identification || !this.customer_type || !this.customer_names || !this.customer_address || !this.customer_email || !this.customer_phone || !this.payment_method) {
       Swal.fire({
         icon: "error",
         title: "Validación...",
@@ -229,7 +229,7 @@ export class CrearComponent {
       customer: {
         identification: this.customer_identification,  // Asegúrate de que sea una cadena
         dv: "3",  // Asegúrate de que el valor sea una cadena
-        company: this.customer_company || "",  // Si es opcional, se debe enviar como string vacío si está vacío
+        company: "",  // Si es opcional, se debe enviar como string vacío si está vacío
         trade_name: "",  // Si está vacío, debe ser un string vacío
         identification_document_id: this.customer_type,  // Asegúrate de que este valor también sea una cadena
         names: this.customer_names,
